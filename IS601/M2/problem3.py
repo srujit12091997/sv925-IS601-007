@@ -7,6 +7,17 @@ a4 = ["-1", "2", "-3", "4", "-5", "5", "-6", "6", "-7", "7"]
 def process_array(num, arr):
     print("\nProcessing Array({}): \n\n".format(num))
     print(arr)
+    [print(i) for i in arr]
+    a1_positive = [abs(x) for x in a1]
+    a2_positive = [abs(x) for x in a2]
+    a3_positive = [abs(x) for x in a3]
+    a4_positive = [abs(float(x)) for x in a4]
+    print(type(a1_positive))
+    print(type(a2_positive))
+    print(type(a3_positive))
+    print(type(a4_positive))
+    #result
+    #print(type(result))
     print("\nPositive Output:\n")
     # Note: use the arr variable; don't directly refer to a1-a4 variables
     # TODO add new code here to print the desired result
