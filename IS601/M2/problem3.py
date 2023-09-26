@@ -7,21 +7,29 @@ a4 = ["-1", "2", "-3", "4", "-5", "5", "-6", "6", "-7", "7"]
 def process_array(num, arr):
     print("\nProcessing Array({}): \n\n".format(num))
     print(arr)
-    [print(i) for i in arr]
-    a1_positive = [abs(x) for x in a1]
-    a2_positive = [abs(x) for x in a2]
-    a3_positive = [abs(x) for x in a3]
-    a4_positive = [abs(float(x)) for x in a4]
-    print(type(a1_positive))
-    print(type(a2_positive))
-    print(type(a3_positive))
-    print(type(a4_positive))
-    #result
-    #print(type(result))
     print("\nPositive Output:\n")
-    # Note: use the arr variable; don't directly refer to a1-a4 variables
-    # TODO add new code here to print the desired result
-    # TODO include the type() of the output data to ensure the result is positive AND the same datatype as the input value
+
+    # Convert all negative elements in the array to positive
+    positive_arr = []
+    for element in arr:
+        if isinstance(element, str):
+            positive_arr.append(abs(int(element)))
+        else:
+            positive_arr.append(abs(element))
+
+    # Keep the output data type the same as the input data type
+    if all(isinstance(x, int) for x in arr):
+        positive_arr = [int(x) for x in positive_arr]
+    elif all(isinstance(x, float) for x in arr):
+        positive_arr = [float(x) for x in positive_arr]
+    elif all(isinstance(x, str) for x in arr):
+        positive_arr = [str(x) for x in positive_arr]
+
+    # Print the positive output array
+    print(positive_arr)
+
+    # Print the type of the output data
+    print("\nType of output data:", type(positive_arr[0]))
 
 
 print("Problem 3")
@@ -29,3 +37,4 @@ process_array(1, a1)
 process_array(2, a2)
 process_array(3, a3)
 process_array(4, a4)
+
