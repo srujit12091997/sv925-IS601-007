@@ -120,7 +120,7 @@
 </td></tr>
 </table></td></tr>
 <tr><td> <em>Sub-Task 3: </em> Briefly explain the solutions to the checklist items for get_overdue_tasks()</td></tr>
-<tr><td> <em>Response:</em> <p>overdue is a task for which the item is clearly gives the task<br>indexes&nbsp; and the task name with the due time and the expiration time<br></p><br></td></tr>
+<tr><td> <em>Response:</em> <p>overdue is a task for which item is clearly gives the task<br>indexes&nbsp; and the task name with the due time and the expiration time<br></p><br></td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 9: </em> Get Time Remaining Logic </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Add screenshot(s) of the edited get_time_remaining() function</td></tr>
