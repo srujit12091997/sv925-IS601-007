@@ -103,7 +103,6 @@ class PumpkinMachine:
         if self.currently_selecting != STAGE.FaceStencil:
             raise InvalidStageException
         if self.remaining_uses <= 0:
-            
             raise NeedsCleaningException
         if self.remaining_stencils <= 0:
             raise ExceededRemainingChoicesException
@@ -168,9 +167,25 @@ class PumpkinMachine:
             raise InvalidPaymentException
 
     def print_current_pumpkin(self):
-        
+        print(
+            f"Current Pumpkin: {','.join([x.name for x in self.inprogress_pumpkin])}")
+
+
+    
+    
+    def calculate_cost(self):
+        total_cost = 0
+        for item in self.inprogress_pumpkin:
+            total_cost += item.cost
+        formatted_cost = "${:.2f}".format(total_cost)
+        return formatted_cost
+        # SV925 10/23/2023 
+        # Initializes a variable called total_cost to zero. To accumulate the total cost of the items in the inprogress_pumpkin
+        # using self.inprogress in the for loop iterates through the items in the inprogress_pumpkin list.
+        # providing the total cost of the user's custom pumpkin order. Payment amount during the payment stage.
         # TODO add the calculation expression/logic for the inprogress_pumpkin
-        return 10000  # <-- this needs to be changed
+        #return 10000  # <-- this needs to be changed
+        #done
 
     def run(self):
         try:
@@ -210,21 +225,48 @@ class PumpkinMachine:
         # TODO items below
         # Note: Stage/category refers to the enum towards the top. Make sure error messages are very clear to the user
         # handle OutOfStockException
+        #SV925
+        #10/23/2023
+        # this part will catch the exception of the code for checking the pumpkin are in stock or not whether it was out of stock
+        except OutOfStockException as e:
+            print(f"Sorry, the {e.name} is out of stock.")
             # show an appropriate message of what stage/category was out of stock
+            
         # handle NeedsCleaningException
             # prompt user to type "clean" to trigger clean_machine()
             # any other input is ignored
             # print a message whether or not the machine was cleaned
+            
+        except NeedsCleaningException:
+            cleaning_choice = input("The machine needs cleaning. Type 'clean' to clean the machine.\n")
+            if cleaning_choice.lower() == "clean":
+                self.clean_machine()
+                print("The machine has been cleaned.")
+            else:
+                print("Machine not cleaned.")
         # handle InvalidChoiceException
             # show an appropriate message of what stage/category was the invalid choice was in
+            
+        except InvalidChoiceException as e:
+            print(f"Invalid choice '{e.invalid_choice}' for the current stage '{e.stage}'.")
+        # TODO handle other exceptions here
         # handle ExceededRemainingChoicesException
+        
             # show an appropriate message of which stage/category was exceeded
             # move to the next stage/category
+        except ExceededRemainingChoicesException as e:
+            print(f"Exceeded the maximum number of {e.category} choices ({e.maximum}).")
         # handle InvalidPaymentException
             # show an appropriate message
+        except InvalidPaymentException:
+            print("Invalid payment. Please enter the exact total amount.")
         except Exception as e:
             # this is a default catch all, follow the steps above
             print(f"Something went wrong and I didn't handle it: {e}")
+            
+        #SV925
+        #10/23/2023
+        # Exceptions handling from the code
 
         self.run()
 
